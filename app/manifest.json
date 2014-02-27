@@ -1,6 +1,9 @@
 {
     "manifest_version": 2,
 
+    "permissions": [
+        "tabs", "http://*/*", "https://*/*"],
+
     "name": "Boonoonoos",
     "description": "This extension sillifies webpages by bananafying them, as per the childrens' work 'I like to eat apples and bananas', also known as 'Oo look too oot ooples oond boonoonoos'.",
     "version": "1.0",
