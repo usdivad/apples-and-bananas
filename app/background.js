@@ -13,6 +13,7 @@ $j("body").append("ho");
 
 **/
 $j("span, a, ._1x_, .1y1, .userContent").each(function() {
+    
     var content_text = $j(this).text();
     var content_html = $j(this).html();
     if (content_html.match(/<img.*>/) === null) { //make sure we don't have images
@@ -21,6 +22,10 @@ $j("span, a, ._1x_, .1y1, .userContent").each(function() {
     else {
         console.log(content_text);
     }
+    
+
+    //SHOUTING
+    //$j(this).text($j(this).text().toUpperCase());
 });
 
 function replace_vowels(str, vowel) {
