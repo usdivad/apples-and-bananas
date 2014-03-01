@@ -11,5 +11,14 @@
     "browser_action": {
         "default_icon": "bananas.png",
         "default_popup": "popup.html"
-    }
+    },
+
+    "content_scripts": [
+        {
+            "js": ["lib/jquery-1.10.2.min.js", "background.js"],
+            "matches": ["*://*/*"]
+        }
+    ],
+
+    "web_accessible_resources": ["lib/jquery-1.10.2.min.map"]
 }

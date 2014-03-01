@@ -1,13 +1,13 @@
 $(document).ready(function() {
 
     //handles event properly but doesn't execute script on tab
-    /*$(".operator").click(function() {
+    $(".operator").click(function() {
         replace_vowels("ee");
-    });*/
+    });
 
     //executes script on tab but doesn't wait for click
-    $(".operator").click(replace_vowels("oo"));
-    
+    ///$(".operator").click(replace_vowels("oo"));
+
     //document.getElementById("o1").addEventListener("click", replace_vowels("ee"));
     console.log("hey");
 });
@@ -16,13 +16,18 @@ function replace_vowels(vowel) {
     //var body_text = $("body").text();
     alert("op");
     var pattern = /[aeiou]+/g;
-    chrome.tabs.executeScript(null,
-        {code: "console.log('asdf')"});
+    /*chrome.tabs.executeScript(null, {file: "lib/jquery-1.10.2.min.js"}, function(){
+        chrome.tabs.executeScript(null, {code: "console.log($('div'))"});
+    });*/
+
+    chrome.tabs.executeScript(null, {code:"console.log('yo')"});
+    
     chrome.tabs.executeScript(null,
         //{code:"document.body.innerText='" + body_text.replace(pattern, vowel) + "'"});
         {code: "document.body.innerText = document.body.innerText.replace("
                 + pattern + "," + "'"+vowel+"'" + ")"});
-    window.close();
+
+    //window.close();
 }
 
 function lookbehind(str, regex) {
