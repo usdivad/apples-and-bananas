@@ -14,6 +14,19 @@ var phonemes = {
     oo: ["oo", "ew", "ue", "uu"]
 }
 
+var phonemes_simple = {
+    a: ["a"],
+    e: ["e"],
+    i: ["i", "y"],
+    o: ["o", "aa"],
+    u: ["u"],
+    ai: ["ai", "ay", "ae", "ey"],
+    ee: ["ee", "ea", "ie"],
+    igh: ["ie", "y"],
+    oa: ["oa", "oh", "oe"],
+    oo: ["oo", "ue", "uu"]
+}
+
 Array.prototype.join_rand = function(list) {
     var joined = "";
     for (var i=0; i<this.length; i++) {
@@ -42,7 +55,7 @@ function banana_text_variation(text, phoneme) {
 
 function banana_text(text, phoneme) {
     var str = text;
-    var graphemes = phonemes[phoneme];
+    var graphemes = phonemes_simple[phoneme];
     var vowel = graphemes[Math.floor(Math.random()*graphemes.length)];
     var vowel_lower = vowel.toLowerCase();
     var vowel_upper = vowel.toUpperCase();
