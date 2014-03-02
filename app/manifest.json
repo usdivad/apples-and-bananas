@@ -4,20 +4,17 @@
     "permissions": [
         "tabs", "http://*/*", "https://*/*"],
 
-    "name": "Boonoonoos",
-    "description": "This extension sillifies webpages by bananafying them, as per the childrens' work 'I like to eat apples and bananas', also known as 'Oo look too oot ooples oond boonoonoos'.",
+    "name": "Apples and Bananas",
+    "description": "Replace vowel sounds on any webpage with a phoneme of your choice; just like the children's song!",
     "version": "1.0",
     
     "browser_action": {
-        "default_icon": "bananas.png",
+        "default_icon": "icon.png",
         "default_popup": "popup.html"
     },
 
-    //"web_accessible_resources": ["lib/jquery-1.10.2.min.map"],
-
     "content_scripts": [
         {
-            //"js": ["lib/jquery-1.10.2.min.js", "background.js"],
             "js": ["background.js"],
             "matches": ["*://*/*"]
         }
