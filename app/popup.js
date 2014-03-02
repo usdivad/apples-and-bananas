@@ -1,11 +1,28 @@
 window.onload = function() {
     console.log("load");
 
-    document.getElementById("o1").addEventListener("click", function() {
+    var options = document.getElementById("options");
+    var operator = document.getElementById("operator");
+    var phoneme_list = [
+        {phoneme: "a", text: "apples and bananas"},
+        {phoneme: "e", text: "epples end benehnehs"},
+        {phoneme: "i", text: "ipples ind binihnihs"},
+        {phoneme: "o", text: "opples ond bahnawnaws"},
+        {phoneme: "u", text: "upples und buhnuhnuhs"},
+        {phoneme: "ai", text: "aypples aynd baenaenays"},
+        {phoneme: "ee", text: "eepples eend beeneaneas"},
+        {phoneme: "igh", text: "iepples ighnd bynighnighs"},
+        {phoneme: "oa", text: "oapples ownd bohnoenoes"},
+        {phoneme: "oo", text: "oopples oond buenewnews"},
+    ]
+
+    options.innerHTML = populate_phonemes(phoneme_list);
+
+    operator.addEventListener("click", function() {
         chrome.tabs.executeScript(null, {code:"console.log('ho')"});
         chrome.tabs.query({active: true, currentWindow: true}, 
             function(tabs) {
-                var msg = "whatup?"
+                var msg = "whatup?";
                 chrome.tabs.sendMessage(tabs[0].id, {vowel: "ee", msg: msg}, function(response) {
                     console.log("I said: " + msg + "\nYou said: "+ response.msg);
                 });
@@ -16,23 +33,18 @@ window.onload = function() {
     //console.log("hey");
 };
 
-/*
-function replace_vowels(vowel) {
-    //var body_text = $("body").text();
-    alert("op");
-    var pattern = /[aeiou]+/g;
 
-    chrome.tabs.executeScript(null, {code:"console.log('yo')"});
-    
-    chrome.tabs.executeScript(null,
-        //{code:"document.body.innerText='" + body_text.replace(pattern, vowel) + "'"});
-        {code: "document.body.innerText = document.body.innerText.replace("
-                + pattern + "," + "'"+vowel+"'" + ")"});
-
-    //window.close();
+function populate_phonemes(plist) {
+    var html = "";
+    for (var i=0; i<plist.length; i++) {
+        var p = plist[i];
+        html += "<option " + "value = '" + p.phoneme + "'>"
+              + p.text + "</option>";
+    }
+    return html;
 }
-*/
 
+//Trying to implement lookbehind for regexes in Javascript
 function lookbehind(str, regex) {
     //return str.reverse().
 }

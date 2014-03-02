@@ -1,5 +1,19 @@
 var TEXT_NODE = 3;
 
+//Adapted from https://czone.eastsussex.gov.uk/sites/gtp/library/core/english/Documents/phonics/Table%20of%20phonemes.pdf
+var phonemes = {
+    a: ["a"],
+    e: ["e", "eh"],
+    i: ["i", "y"],
+    o: ["o", "aw", "ah"],
+    u: ["u", "uh"],
+    ai: ["ai", "ay", "ae"],
+    ee: ["ee", "ea", "ie"],
+    igh: ["igh", "ie", "y"],
+    oa: ["oa", "ow", "oh", "oe"],
+    oo: ["oo", "ew", "ue"]
+}
+
 function banana_text(text, vowel) {
     var str = text;
     var vowel_lower = vowel.toLowerCase();
