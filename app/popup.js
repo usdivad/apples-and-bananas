@@ -1,18 +1,20 @@
-$(document).ready(function() {
+window.onload = function() {
+    console.log("load");
 
-    $(".operator").click(function() {
+    document.getElementById("o1").addEventListener("click", function() {
         chrome.tabs.executeScript(null, {code:"console.log('ho')"});
         chrome.tabs.query({active: true, currentWindow: true}, 
             function(tabs) {
-                chrome.tabs.sendMessage(tabs[0].id, {vowel: "ee"}, function(response) {
-                    console.log("whatup? " + response.msg);
+                var msg = "whatup?"
+                chrome.tabs.sendMessage(tabs[0].id, {vowel: "ee", msg: msg}, function(response) {
+                    console.log("I said: " + msg + "\nYou said: "+ response.msg);
                 });
         });
 
     });
 
     //console.log("hey");
-});
+};
 
 /*
 function replace_vowels(vowel) {

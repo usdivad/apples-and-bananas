@@ -1,5 +1,6 @@
-var $j = jQuery.noConflict();
 var TEXT_NODE = 3;
+
+//var $j = jQuery.noConflict();
 //$j("body").append("ho");
 //console.log($j("span").text());
 
@@ -74,9 +75,10 @@ function banana_page(vowel) {
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        console.log(sender.tab);
+        var msg = "this is what's up";
+        console.log("You said: " + request.msg + "\nI said: "+ msg);
         banana_page(request.vowel);
-        sendResponse({msg: "this is what's up"});
+        sendResponse({msg: msg});
     }
 );
 
