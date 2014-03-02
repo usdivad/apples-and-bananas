@@ -42,17 +42,25 @@ function replace_vowels(str, vowel) {
 */
 
 
-function banana_text(str, vowel) {
+function banana_text(text, vowel) {
+    var str = text;
     var vowel_lower = vowel.toLowerCase();
     var vowel_upper = vowel.toUpperCase();
     var pattern_lower = /[aeiou]/g;
     var pattern_upper = /[AEIOU]/g;
     var control_lower = "a";
     var control_upper = control_lower.toUpperCase();
+    //var pattern_beginning = new RegExp(vowel_upper )
 
-    var temp = str.replace(vowel_lower, control_lower).replace(vowel_upper, control_upper);
+    //Control to prevent "Heehee" becoming "Heeeeheeee"
+    str = str.replace(new RegExp(vowel_lower, "g"), control_lower).replace(new RegExp(vowel_upper, "g"), control_upper);
 
-    return temp.replace(pattern_lower, vowel_lower).replace(pattern_upper, vowel_upper);
+    //Replacing all vowels with the specified vowel
+    str = str.replace(pattern_lower, vowel_lower).replace(pattern_upper, vowel_upper);
+
+    //Crude check for "beginnings of words" in terms of capitalization
+    //str = str.replace()
+
 }
 
 
