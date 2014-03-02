@@ -22,8 +22,9 @@ window.onload = function() {
         chrome.tabs.executeScript(null, {code:"console.log('ho')"});
         chrome.tabs.query({active: true, currentWindow: true}, 
             function(tabs) {
+                var vowel = options[options.selectedIndex].value; //== options.selectedOptions[0].value but more compatible
                 var msg = "whatup?";
-                chrome.tabs.sendMessage(tabs[0].id, {vowel: "ee", msg: msg}, function(response) {
+                chrome.tabs.sendMessage(tabs[0].id, {vowel: vowel, msg: msg}, function(response) {
                     console.log("I said: " + msg + "\nYou said: "+ response.msg);
                 });
         });
@@ -33,7 +34,7 @@ window.onload = function() {
     //console.log("hey");
 };
 
-
+//Populates a <select> elements with values and text from a list of phonemes
 function populate_phonemes(plist) {
     var html = "";
     for (var i=0; i<plist.length; i++) {
