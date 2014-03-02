@@ -46,21 +46,22 @@ function banana_text(text, vowel) {
     var str = text;
     var vowel_lower = vowel.toLowerCase();
     var vowel_upper = vowel.toUpperCase();
-    var pattern_lower = /[aeiou]/g;
-    var pattern_upper = /[AEIOU]/g;
-    var control_lower = "a";
-    var control_upper = control_lower.toUpperCase();
-    //var pattern_beginning = new RegExp(vowel_upper )
-
-    //Control to prevent "Heehee" becoming "Heeeeheeee"
-    str = str.replace(new RegExp(vowel_lower, "g"), control_lower).replace(new RegExp(vowel_upper, "g"), control_upper);
+    var pattern_lower = /[aeiou]+/g;
+    var pattern_upper = /[AEIOU]+/g;
 
     //Replacing all vowels with the specified vowel
     str = str.replace(pattern_lower, vowel_lower).replace(pattern_upper, vowel_upper);
 
     //Crude check for "beginnings of words" in terms of capitalization
-    //str = str.replace()
+    if (vowel_lower.length > 1) {
+        //The problem with replacing "I" is that it could be in context of "I LOVE YOU" or "I love you"
+        var pattern_beginning = new RegExp("(" + vowel_upper + "(?!\\s)" + ")"
+                                            + "|(" + vowel_upper + "(?=\\s))", "g");
+        var vowel_beginning = vowel_upper.substring(0, 1) + vowel_lower.substring(1, vowel_lower.length);
+        str = str.replace(pattern_beginning, vowel_beginning);
+    }
 
+    return str;
 }
 
 
