@@ -7,9 +7,12 @@
     "name": "Apples and Bananas",
     "description": "Replace vowel sounds on any webpage with a phoneme of your choice; just like the children's song!",
     "version": "1.0",
+    "author": "David Su",
+
+    "icons": {"icon": "icon.png"},
     
     "browser_action": {
-        "default_icon": "icon.png",
+        "default_icon": "img/icon.png",
         "default_popup": "popup.html"
     },
 
