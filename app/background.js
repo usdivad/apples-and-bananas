@@ -55,8 +55,7 @@ function banana_text(text, vowel) {
     //Crude check for "beginnings of words" in terms of capitalization
     if (vowel_lower.length > 1) {
         //The problem with replacing "I" is that it could be in context of "I LOVE YOU" or "I love you"
-        var pattern_beginning = new RegExp("(" + vowel_upper + "(?!\\s)" + ")"
-                                            + "|(" + vowel_upper + "(?=\\s))", "g");
+        var pattern_beginning = new RegExp(vowel_upper + "(?![A-Z])", "g");
         var vowel_beginning = vowel_upper.substring(0, 1) + vowel_lower.substring(1, vowel_lower.length);
         str = str.replace(pattern_beginning, vowel_beginning);
     }
