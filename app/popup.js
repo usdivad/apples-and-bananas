@@ -9,11 +9,11 @@ window.onload = function() {
         {phoneme: "i", text: "ipples ind binihnihs"},
         {phoneme: "o", text: "opples ond bahnawnaws"},
         {phoneme: "u", text: "upples und buhnuhnuhs"},
-        {phoneme: "ai", text: "aypples aynd baenaenays"},
-        {phoneme: "ee", text: "eepples eend beeneaneas"},
-        {phoneme: "igh", text: "iepples ighnd bynighnighs"},
-        {phoneme: "oa", text: "oapples ownd bohnoenoes"},
-        {phoneme: "oo", text: "oopples oond buenewnews"},
+        {phoneme: "ai", text: "aypples aynd baenaynays"},
+        {phoneme: "ee", text: "eapples eend beeneenees"},
+        {phoneme: "igh", text: "iepples ynd bynynys"},
+        {phoneme: "oa", text: "oapples oand boenoenoes"},
+        {phoneme: "oo", text: "oopples uund boonoonoos"},
     ]
 
     options.innerHTML = populate_phonemes(phoneme_list);

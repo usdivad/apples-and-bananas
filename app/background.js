@@ -17,12 +17,12 @@ var phonemes = {
 var phonemes_simple = {
     a: ["a"],
     e: ["e"],
-    i: ["i", "y"],
+    i: ["i"],
     o: ["o", "aa"],
     u: ["u"],
     ai: ["ai", "ay", "ae", "ey"],
     ee: ["ee", "ea", "ie"],
-    igh: ["ie", "y"],
+    igh: ["ie", "iy"],
     oa: ["oa", "oh", "oe"],
     oo: ["oo", "ue", "uu"]
 }
@@ -105,9 +105,7 @@ chrome.runtime.onMessage.addListener(
 
 /*
     TODO:
-    - Shuffle the intermediate characters (charles -> clraehs)
-    - Maintain photos n such (don't destroy)
-    - Do as button not just automatic on every page
-    - Respond to events (scroll, reload, etc.)
+    - More complex phonemes (but it'll make it run slower, no?; iterate through all graphemes)
+    - banana_text_variation() randomness
 
 */
