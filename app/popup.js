@@ -37,12 +37,12 @@ window.onload = function() {
     //console.log("hey");
 };
 
-function send_to_tab(vowel) {
+function send_to_tab(phoneme) {
     chrome.tabs.query({active: true, currentWindow: true}, 
         function(tabs) {
             //Send phoneme value as well as checker message to tab
             var msg = "whatup?";
-            chrome.tabs.sendMessage(tabs[0].id, {vowel: vowel, msg: msg}, function(response) {
+            chrome.tabs.sendMessage(tabs[0].id, {phoneme: phoneme, msg: msg}, function(response) {
                 console.log("I said: " + msg + "\nYou said: "+ response.msg);
         });
     });

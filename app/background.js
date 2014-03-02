@@ -16,12 +16,13 @@ var phonemes = {
 }
 
 //Simplified phoneme list
+//Nothing that doesn't match vowel pattern (uh,oh,aw)
 var phonemes_simple = {
     a: ["a"],
     e: ["e"],
     i: ["i"],
     o: ["o", "aa"],
-    u: ["u"], //the "h" doesn't match vowels
+    u: ["u"],
     ai: ["ai", "ay", "ae", "ey"],
     ee: ["ee", "ea", "ie"],
     igh: ["ai", "ie", "y"],
@@ -92,21 +93,21 @@ function banana_text(text, phoneme) {
 }
 
 //Bananafies nodes IF they're text nodes; apply recursively
-function banana_nodes(nodes, vowel) {
+function banana_nodes(nodes, phoneme) {
     for (var i=0; i<nodes.length; i++) {
         if (nodes[i].nodeType == TEXT_NODE) {
-            nodes[i].nodeValue = banana_text(nodes[i].nodeValue, vowel);
+            nodes[i].nodeValue = banana_text(nodes[i].nodeValue, phoneme);
         }
         else {
-            banana_nodes(nodes[i].childNodes, vowel); //the recursive call!
+            banana_nodes(nodes[i].childNodes, phoneme); //the recursive call!
         }
     }
 }
 
 //Bananafies the whole page
-function banana_page(vowel) {
+function banana_page(phoneme) {
     var nodes = document.getElementsByTagName("body");
-    banana_nodes(nodes, vowel);
+    banana_nodes(nodes, phoneme);
 }
 
 
@@ -116,7 +117,7 @@ function banana_page(vowel) {
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         //Bananafication!
-        banana_page(request.vowel);
+        banana_page(request.phoneme);
 
         //Tab<->extension messaging check in tab console
         var msg = "this is what's up";
