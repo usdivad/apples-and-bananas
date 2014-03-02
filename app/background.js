@@ -1,3 +1,4 @@
+//Constant to check HTML nodeType
 var TEXT_NODE = 3;
 
 //Adapted from https://czone.eastsussex.gov.uk/sites/gtp/library/core/english/Documents/phonics/Table%20of%20phonemes.pdf
@@ -14,19 +15,25 @@ var phonemes = {
     oo: ["oo", "ew", "ue", "uu"]
 }
 
+//Simplified phoneme list
 var phonemes_simple = {
     a: ["a"],
     e: ["e"],
     i: ["i"],
     o: ["o", "aa"],
-    u: ["u"],
+    u: ["u"], //the "h" doesn't match vowels
     ai: ["ai", "ay", "ae", "ey"],
     ee: ["ee", "ea", "ie"],
     igh: ["ai", "ie", "y"],
-    oa: ["oa", "oh", "oe"],
+    oa: ["oa", "oe"],
     oo: ["oo", "ue", "uu"]
 }
 
+/*
+ * Alternate implementation of banana_text
+ */
+
+//Choose a random "glue" between each split term each time
 Array.prototype.join_rand = function(list) {
     var joined = "";
     for (var i=0; i<this.length; i++) {
@@ -36,11 +43,13 @@ Array.prototype.join_rand = function(list) {
     return joined;
 }
 
+//Wrapper; convert all strings in array to upper case
 Array.prototype.toUpperCase = function() {
     for (var i=0; i<this.length; i++) {
         this[i] = this[i].toUpperCase();
     }
 }
+
 
 function banana_text_variation(text, phoneme) {
     var str = text;
@@ -48,11 +57,17 @@ function banana_text_variation(text, phoneme) {
     var pattern_upper = /[AEIOU]+/;
     var graphemes = phonemes[phoneme];
     str = text.split(pattern_lower).join_rand(graphemes);
+    //Come back to this one below
     //str = text.split(pattern_upper).join_rand(graphemes.toUpperCase());
 
     return str;
 }
 
+/*
+ * Banana procedure; functions defined in micro to macro order
+ */
+
+//Convert inner text into bananafied version
 function banana_text(text, phoneme) {
     var str = text;
     var graphemes = phonemes_simple[phoneme];
@@ -76,7 +91,7 @@ function banana_text(text, phoneme) {
     return str;
 }
 
-
+//Bananafies nodes IF they're text nodes; apply recursively
 function banana_nodes(nodes, vowel) {
     for (var i=0; i<nodes.length; i++) {
         if (nodes[i].nodeType == TEXT_NODE) {
@@ -88,17 +103,24 @@ function banana_nodes(nodes, vowel) {
     }
 }
 
+//Bananafies the whole page
 function banana_page(vowel) {
     var nodes = document.getElementsByTagName("body");
     banana_nodes(nodes, vowel);
 }
 
 
+/*
+ * Chrome calls
+ */
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
+        //Bananafication!
+        banana_page(request.vowel);
+
+        //Tab<->extension messaging check in tab console
         var msg = "this is what's up";
         console.log("You said: " + request.msg + "\nI said: "+ msg);
-        banana_page(request.vowel);
         sendResponse({msg: msg});
     }
 );
