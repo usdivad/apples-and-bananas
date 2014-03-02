@@ -13,12 +13,13 @@
         "default_popup": "popup.html"
     },
 
+    //"web_accessible_resources": ["lib/jquery-1.10.2.min.map"],
+
     "content_scripts": [
         {
             "js": ["lib/jquery-1.10.2.min.js", "background.js"],
             "matches": ["*://*/*"]
         }
-    ],
+    ]
 
-    "web_accessible_resources": ["lib/jquery-1.10.2.min.map"]
 }
