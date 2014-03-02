@@ -22,7 +22,7 @@ var phonemes_simple = {
     u: ["u"],
     ai: ["ai", "ay", "ae", "ey"],
     ee: ["ee", "ea", "ie"],
-    igh: ["ie", "iy"],
+    igh: ["ai", "ie", "y"],
     oa: ["oa", "oh", "oe"],
     oo: ["oo", "ue", "uu"]
 }

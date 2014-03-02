@@ -11,14 +11,14 @@ window.onload = function() {
         {phoneme: "u", text: "upples und buhnuhnuhs"},
         {phoneme: "ai", text: "aypples aynd baenaynays"},
         {phoneme: "ee", text: "eapples eend beeneenees"},
-        {phoneme: "igh", text: "iepples ynd bynynys"},
+        {phoneme: "igh", text: "iepples aind bainainais"},
         {phoneme: "oa", text: "oapples oand boenoenoes"},
         {phoneme: "oo", text: "oopples uund boonoonoos"},
     ]
 
     options.innerHTML = populate_phonemes(phoneme_list);
 
-    operator.addEventListener("click", function() {
+    options.addEventListener("change", function() {
         chrome.tabs.executeScript(null, {code:"console.log('ho')"});
         chrome.tabs.query({active: true, currentWindow: true}, 
             function(tabs) {
