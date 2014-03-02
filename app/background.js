@@ -7,19 +7,47 @@ var phonemes = {
     i: ["i", "y"],
     o: ["o", "aw", "ah"],
     u: ["u", "uh"],
-    ai: ["ai", "ay", "ae"],
+    ai: ["ai", "ay", "ae", "ey"],
     ee: ["ee", "ea", "ie"],
     igh: ["igh", "ie", "y"],
     oa: ["oa", "ow", "oh", "oe"],
-    oo: ["oo", "ew", "ue"]
+    oo: ["oo", "ew", "ue", "uu"]
 }
 
-function banana_text(text, vowel) {
+Array.prototype.join_rand = function(list) {
+    var joined = "";
+    for (var i=0; i<this.length; i++) {
+        var glue = list[Math.floor(Math.random()*list.length)];
+        joined += this[i] + glue;
+    }
+    return joined;
+}
+
+Array.prototype.toUpperCase = function() {
+    for (var i=0; i<this.length; i++) {
+        this[i] = this[i].toUpperCase();
+    }
+}
+
+function banana_text_variation(text, phoneme) {
     var str = text;
+    var pattern_lower = /[aeiou]+/;
+    var pattern_upper = /[AEIOU]+/;
+    var graphemes = phonemes[phoneme];
+    str = text.split(pattern_lower).join_rand(graphemes);
+    //str = text.split(pattern_upper).join_rand(graphemes.toUpperCase());
+
+    return str;
+}
+
+function banana_text(text, phoneme) {
+    var str = text;
+    var graphemes = phonemes[phoneme];
+    var vowel = graphemes[Math.floor(Math.random()*graphemes.length)];
     var vowel_lower = vowel.toLowerCase();
     var vowel_upper = vowel.toUpperCase();
-    var pattern_lower = /[aeiou]+/g;
-    var pattern_upper = /[AEIOU]+/g;
+    var pattern_lower = /[aeiouy]+/g;
+    var pattern_upper = /[AEIOUY]+/g;
 
     //Replacing all vowels with the specified vowel
     str = str.replace(pattern_lower, vowel_lower).replace(pattern_upper, vowel_upper);
